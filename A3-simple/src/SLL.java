@@ -12,11 +12,11 @@
   /**
    * Head of the SLL
    */
-  NodeSL<T> head;
+  private NodeSL<T> head;
   /**
    * Tail of the SLL
    */
-  NodeSL<T> tail;
+  private NodeSL<T> tail;
   /**
    * Current number of nodes in SLL
    */
