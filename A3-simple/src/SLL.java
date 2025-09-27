@@ -8,7 +8,7 @@
  public class SLL<T> {
 
   // Attributes 
-  
+
   /**
    * Head of the SLL
    */
@@ -21,7 +21,10 @@
    * Current number of nodes in SLL
    */
   int size; 
-
+  /**
+   * Single Linked List holding type T
+   */
+  SLL<T> SLL; 
     
 
 
@@ -42,7 +45,30 @@
    *  @param v item to insert 
    */
   public void addAfter(NodeSL<T> here, T v) {
-     
+    // Initializes pointer reference to head
+    NodeSL<T> pointer = head;
+
+    // iterate over list to find node to insert item after
+    while (pointer != null) {
+      // checks if pointer data matches node to insert after data
+      if (pointer == here) {
+        // for testing purposes
+        System.out.println("The node exists.");
+        break;
+      }
+      // reassigns pointer to next node in list
+      pointer = pointer.getNext();
+    }
+
+    // creates newNode that sets v as its data and links to pointer's next node
+    NodeSL<T> newNode = new NodeSL<T>(v, pointer.getNext());
+    // links pointer to newNode 
+    pointer.setNext(newNode);
+
+    // for testing purposes
+    // prints SLL to see if element got added
+    System.out.println(SLL.toString());
+
   }
 
   /** 

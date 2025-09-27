@@ -5,7 +5,7 @@ For this assignment you will develop your own implementation of a singly linked 
 ## Files Provided
 
 We have included the following classes that you need to reference, but DO NOT need to make changes to:
-- `NodeSL.java`, the class defining a very important object: the individual nodes that make up an SLL. In the lecture slides, this was implemented as a nested class `Node` within `LinkedList`.
+- `NodeSL.java`, the class defining a very important object: the individual nodes that make up an SLL. In the lecture slides, this was implemented as a nested class `` within `LinkedList`.
 - `MissingElementException.java` and `SelfInsertException.java`, 2 classes that describe specific types of exceptions relevant to linked lists. You will use these in **Phase 3**.
 - 3 interfaces labeled `Phase1SLL`, `Phase2SLL`, and `Phase4SLL` (there is no interface for Phase 3). You will implement each interface in its corresponding phase.
 - 1 test class, `SLLTest.java`. These are tests we are providing to help guide your SLL development. Feel free to add additional tests to help ensure your code runs as expected, but it's not specifically required.
