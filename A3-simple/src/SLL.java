@@ -72,6 +72,7 @@
 
   }
 
+
   /** 
    *  Removes the given item from the head of the list
    *  @return v item removed
@@ -85,6 +86,7 @@
   public T removeLast();
 
   
+  // NOT tested yet
   // Chiashi
   /** 
    *  Removes the node after the given position
@@ -123,13 +125,32 @@
 
   }
 
+
+  // NOT tested yet
   // Chiashi
   /**
    *  Returns a count of the number of elements in the list
    *  @return current number of nodes
    */
   public int size() {
-    return 0;
+    // counter to keep track of number of elements in list, initialized to 0
+    int count = 0;
+    NodeSL<T> pointer = head;
+
+    // checks if next node isn't null, then increments 1 to counter
+    while(pointer.getNext() != null) {
+      count = count + 1;
+    }
+
+    // updates size attribute to counter
+    this.size = count;
+
+    // for testing purposes
+    // checks if count and current size match
+    System.out.println("This is the count: " + count);
+    System.out.println("This is the current size: " + size);
+
+    return count;
   }
 
 
