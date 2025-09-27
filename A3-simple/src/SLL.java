@@ -37,7 +37,8 @@
   public void addLast(T v);
 
 
-  // NOT RETURNING ANYTHING so will be reassigning linkedList variable to 
+  // NOT tested yet
+  // referenced geeksforgeeks
   // Chiashi
   /** 
    *  Inserts the given item after the specified node
@@ -66,8 +67,8 @@
     pointer.setNext(newNode);
 
     // for testing purposes
-    // prints SLL to see if element got added
-    System.out.println(SLL.toString());
+    // prints SLL to see if item got added
+    System.out.println("This is the SLL after adding item: " + SLL.toString());
 
   }
 
@@ -83,6 +84,7 @@
    */
   public T removeLast();
 
+  
   // Chiashi
   /** 
    *  Removes the node after the given position
@@ -90,7 +92,34 @@
    *  @return item removed
    */
   public T removeAfter(NodeSL<T> here) {
-    return T;
+    NodeSL<T> pointer = head;
+
+    while (pointer != null) {
+      if (pointer == here) {
+        System.out.println("The node exists");
+        break;
+      }
+      pointer = pointer.getNext();
+    }
+
+    // assigns removedItem to variable to return later
+    NodeSL<T> removedNode = pointer.getNext();
+    // for testing purposes
+    // prints removedNode before link to pointer updates
+    System.out.println("This is the removedNode: " + removedNode.getData());
+
+    // updates pointer's link to next next node
+    pointer.setNext(pointer.getNext().getNext());
+    // for testing purposes
+    // prints removedNode after linking to pointer updates 
+    System.out.println("This is the removedNode after updating pointer " + removedNode.getData());
+
+    // for testing purposes
+    // prints SLL to see if item got removed
+    System.out.println("This is the updated SLL after removing item: " + SLL.toString());
+
+
+    return removedNode.getData();
 
   }
 
