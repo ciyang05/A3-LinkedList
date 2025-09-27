@@ -7,10 +7,22 @@
 
  public class SLL<T> {
 
+  // Attributes 
+  
+  /**
+   * Head of the SLL
+   */
+  NodeSL<T> head;
+  /**
+   * Tail of the SLL
+   */
+  NodeSL<T> tail;
+  /**
+   * Current number of nodes in SLL
+   */
+  int size; 
 
     
-
-
 
 
   // Phase 2
