@@ -5,7 +5,7 @@
  * @version Spring 2024
  */
 
- public class SLL<T> implements Phase2SLL<T> {
+ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T> {
 
   // Attributes 
 
@@ -26,7 +26,58 @@
    */
   SLL<T> SLL; 
     
+  // Phase 1
+  /** 
+   *  Accessor for head node
+   *  @return the head node
+   */
+  public NodeSL<T> getHead(){
+    return head;
+  }
+  
+  /** 
+   *  Accessor for tail node
+   *  @return the tail node
+   */
+  public NodeSL<T> getTail(){
+    return tail;
+  }
 
+  /** 
+   *  Determines whether a list is empty
+   *  @return T/F is the list empty?
+   */
+  public boolean isEmpty(){
+    if (head == null){
+        return true;
+    }
+    else{
+        return false;
+    }
+  }
+
+  /** 
+   *  Inserts the given item at the head of the list
+   *  @param v item to insert 
+   */
+  public void addFirst(T v){
+    NodeSL<T> newNode = new NodeSL<>(v, head);
+    head = newNode;
+  }
+  
+  /** Converts to a string representation */
+  public String toString(){
+    StringBuilder result = new StringBuilder();
+    NodeSL<T> current = head;
+    while (current != null){
+        result.append(current.getNext())
+              .append(" ");
+        current = current.getNext();
+    }
+    
+    return result.toString();
+
+  }
 
   // Phase 2
 
