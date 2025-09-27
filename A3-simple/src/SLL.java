@@ -23,6 +23,7 @@
 
 
   // NOT RETURNING ANYTHING so will be reassigning linkedList variable to 
+  // Chiashi
   /** 
    *  Inserts the given item after the specified node
    *  @param here node to insert after
@@ -44,6 +45,7 @@
    */
   public T removeLast();
 
+  // Chiashi
   /** 
    *  Removes the node after the given position
    *  @param here marks position to remove after
@@ -54,6 +56,7 @@
 
   }
 
+  // Chiashi
   /**
    *  Returns a count of the number of elements in the list
    *  @return current number of nodes
