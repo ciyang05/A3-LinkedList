@@ -5,7 +5,7 @@
  * @version Spring 2024
  */
 
- public class SLL<T> {
+ public class SLL<T> implements Phase2SLL<T> {
 
   // Attributes 
 
