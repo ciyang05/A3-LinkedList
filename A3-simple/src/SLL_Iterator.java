@@ -1,14 +1,35 @@
+import java.util.NoSuchElementException;
+
+import org.junit.platform.engine.support.hierarchical.Node;
+
 /** Keeps track of position in a linked list */
 public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
+
+    // Attributes 
+
     /**
+     * position of iterator is on either side of this node
+     */
+    private NodeSL<T> pos;
+    /**
+     * Tracks if iterator is on left or right of node
+     */
+    private boolean onLeft;
+
+
+    /**
+     * Constructor
      * Creates a new iterator on the given list.
      * Default position is leftmost
      * 
      * @param list the list to iterate on
      */
     public SLL_Iterator(SLL<T> list) {
-        // TODO
+        pos = list.getHead();
+        onLeft = true;
+
     }
+
 
     /**
      * Tests whether there are any more
@@ -16,9 +37,10 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * @return T/F is it safe to call next()?
      */
     public boolean hasNext() {
-        // TODO
-        return false;
+        // checks if position is not null AND if onLeft is T/f or next node is not null
+        return ((pos != null) && (onLeft || (pos.getNext() != null)));
     }
+
 
     /**
      * Returns next or throws an exception
@@ -27,9 +49,20 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * @return the next element
      */
     public T next() {
-        // TODO
-        return null;
+        // checks if hasNext is null or there is no next node
+        if (!hasNext()) {
+            throw new NoSuchElementException("There is no next node. It is null.");
+        // checks if onLeft is True
+        } else if (onLeft) {
+            onLeft = false;
+        // else update position to next node
+        } else {
+            pos = pos.getNext();
+        }
+        // return position's data
+        return pos.getData();
     }
+
 
     /**
      * Sets the data for the element just passed
@@ -37,8 +70,12 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * @param data value to set
      */
     public void set(T data) {
-        // TODO
+        // if iterator is not on the left of pos thus on the right of pos
+        if (!onLeft) {
+            pos.setData(data);
+        }
     }
+
 
     /**
      * Returns the data for the element just passed
@@ -46,7 +83,11 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * @return data value in the element just passed
      */
     public T get() {
-        // TODO
+        // if iterator is not on the left of pos thus on the right of pos
+        if (!onLeft) {
+            return pos.getData();
+        }
+        // returns null if iterator is on left 
         return null;
     }
 
@@ -57,7 +98,21 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * @param data the value to insert
      */
     public void add(T data) {
-        // TODO
+        // exits function if iterator is on left of node
+        if (onLeft) {
+            return;
+        }
+
+        // creates new node/elemeent w/specified data
+        NodeSL<T> newNode = new NodeSL<>(data, pos.getNext());
+
+        // links next node of pos to be newNode
+        pos.setNext(newNode);
+
+        // // sets pos to newNode
+        // pos = newNode;
+        // // sets onLeft to true now that on left side of newNode
+        // onLeft = true;
     }
 
     /**
@@ -65,6 +120,11 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * Cannot be called twice in a row without intervening next()
      */
     public void remove() {
-        // TODO
+        if (onLeft) {
+            return;
+        }
+
+        
+
     }
 }

@@ -93,6 +93,7 @@
   // Chiashi
   /** 
    *  Inserts the given item after the specified node
+   * 
    *  @param here node to insert after
    *  @param v item to insert 
    */
@@ -141,6 +142,7 @@
   // Chiashi
   /** 
    *  Removes the node after the given position
+   * 
    *  @param here marks position to remove after
    *  @return item removed
    */
@@ -159,13 +161,13 @@
     NodeSL<T> removedNode = pointer.getNext();
     // for testing purposes
     // prints removedNode before link to pointer updates
-    System.out.println("This is the removedNode: " + removedNode.getData());
+    System.out.println("This is the removedNode before link to pointer updates: " + removedNode.getData());
 
     // updates pointer's link to next next node
     pointer.setNext(pointer.getNext().getNext());
     // for testing purposes
     // prints removedNode after linking to pointer updates 
-    System.out.println("This is the removedNode after updating pointer " + removedNode.getData());
+    System.out.println("This is the removedNode after updating pointer: " + removedNode.getData());
 
     // for testing purposes
     // prints SLL to see if item got removed
@@ -181,6 +183,7 @@
   // Chiashi
   /**
    *  Returns a count of the number of elements in the list
+   * 
    *  @return current number of nodes
    */
   public int size() {
