@@ -196,6 +196,9 @@
    *  @return item removed
    */
   public T removeAfter(NodeSL<T> here) {
+    if (isEmpty()){
+      throw new MissingElementException("Cannot remove in an empty list");
+    }
     NodeSL<T> pointer = head;
 
     while (pointer != null) {
