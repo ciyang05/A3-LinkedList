@@ -5,9 +5,10 @@
  * @version Spring 2024
  */
 
- public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T> {
+ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL {
 
   // Attributes 
+
 
   /**
    * Head of the SLL
@@ -27,6 +28,21 @@
   SLL<T> SLL; 
     
   // Phase 1
+
+  /**
+   * Copy constructor 
+   */
+  public SLL(){
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  //making new empty constructor
+  SLL <String> list = new SLL<>();
+
+
+
   /** 
    *  Accessor for head node
    *  @return the head node
@@ -85,7 +101,9 @@
    *  Inserts the given item at the tail of the list
    *  @param item to insert 
    */
-  public void addLast(T v);
+  public void addLast(T v){
+     // to do
+  }
 
 
   // NOT tested yet
@@ -128,13 +146,17 @@
    *  Removes the given item from the head of the list
    *  @return v item removed
    */
-  public T removeFirst();
+  public T removeFirst(){
+    return null;
+  }
 
   /** 
    *  Removes the given item from the tail of the list
    *  @return item removed
    */
-  public T removeLast();
+  public T removeLast(){
+    //to do
+  }
 
   
   // NOT tested yet
@@ -203,6 +225,89 @@
 
     return count;
   }
+
+
+  // Phase 4
+
+  //copy constructor
+  public SLL(SLL<T> other){
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+
+    NodeSL<T> current = other.getHead();
+
+    while(current != null){
+      this.addLast(current.getData());
+    }
+
+    current = current.getNext();
+
+
+  }
+
+
+
+  /** 
+   *  Makes a copy of elements from the original list
+   *  @param here  starting point of copy
+   *  @param n  number of items to copy
+   *  @return copied list
+   */
+  public SLL<T> subseqByCopy(NodeSL<T> here, int n){
+
+    //if the started point is null, then exception
+    if(here == null){
+      throw new IllegalArgumentException("Head can not be null.");
+    }
+
+    //if no nodes, then exception
+    if(n < 0){
+      throw new IllegalArgumentException("You must have nodes or the number of nodes can not be negative.");
+    }
+
+    //empty list
+    SLL <T> copy = new SLL<>();
+
+    for(int i = 0; i < n; i++){
+      T data = here.getData();
+      copy.addLast(data);
+      here = here.getNext();
+    }
+
+    return copy;
+
+  }
+
+  
+  /**
+   * Places copy of the provided list into this after the specified node.
+   * @param list the list to splice in a copy of
+   * @param afterHere  marks the position in this where the new list should go
+   */
+  public void spliceByCopy(SLL<T> list, NodeSL<T> afterHere){
+    
+    //copying list
+    SLL<T> copy = new SLL<>(list);
+
+
+    NodeSL<T> tail = copy.getHead();
+
+     while(tail.getNext() != null){ // while the next node after the head is not empty
+        tail = tail.getNext(); //keep moving until the node has null as the next node aka the last node, making it the tail
+     }
+
+     //set the next node after the tail to be the next element after the afterHere
+     tail.setNext(afterHere.getNext());
+
+     //make afterHere's next node to be the head of the copied list
+     afterHere.setNext(copy.getHead());
+
+
+
+  }
+  
+
 
 
  }
