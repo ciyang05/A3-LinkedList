@@ -80,12 +80,21 @@
   }
 
   // Phase 2
-
   /** 
    *  Inserts the given item at the tail of the list
    *  @param item to insert 
    */
-  public void addLast(T v);
+  public void addLast(T v){
+    NodeSL<T> newNode = new NodeSL<>(v, null);
+    if (isEmpty()) {
+      head = newNode;
+      tail = newNode;
+    } else {
+       tail.setNext(newNode);
+       tail. newNode;
+    }
+    size++;
+  }
 
 
   // NOT tested yet
@@ -128,14 +137,54 @@
   /** 
    *  Removes the given item from the head of the list
    *  @return v item removed
+   *  @throws MissingElementException if the list is empty
    */
-  public T removeFirst();
+  public T removeFirst() {
+    if (isEmpty()) {
+      throw new MissingElementException("Cannot remove from empty list");
+    }
+
+    T data = head.getData();
+    head = head.getNext();
+
+    if (head == null) {
+      tail = null; 
+    }
+    size--;
+
+    return data;
+  }
 
   /** 
    *  Removes the given item from the tail of the list
    *  @return item removed
+   *  @throws MissingElementException if the list is empty
    */
-  public T removeLast();
+  public T removeLast() {
+    if  ((isEmpty())) {
+      throw new MissingElementException("Cannot remove from empty list");
+    }
+    
+    if (head == tail) {
+      T data = head.getData();
+      head = null;
+      tail = null;
+      size--;
+      return data;
+    }
+
+    NodeSL<T> current = head;
+    while (current.getNext() != tail) {
+      current = current.getNext();
+    }
+
+    T data = tail.getData();
+    tail = current;
+    tail.setNext(null);
+    size--;
+
+    return data;
+  }
 
   
   // NOT tested yet
