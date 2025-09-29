@@ -206,7 +206,7 @@
       throw new MissingElementException("Node is null");
     }
     if (here.getNext()== null){
-      throw new MissingElementException("Cannot remove an element that does not exist")
+      throw new MissingElementException("Cannot remove an element that does not exist");
     }
     NodeSL<T> pointer = head;
 
