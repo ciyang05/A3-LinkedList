@@ -91,7 +91,7 @@
       tail = newNode;
     } else {
        tail.setNext(newNode);
-       tail. newNode;
+       tail.newNode;
     }
     size++;
   }
@@ -259,5 +259,183 @@
     return count;
   }
 
+/**
+ * extract a subseq from this list and returns it as a new SLL
+ * the subseq starts after afterHere and ends at toHere
+ * 
+ * @param afterHere the node after which extraction begins (null mean start fromhead)
+ * @param toHere the last node to extract
+ * @return a new SLl that contains the extracted subseq
+ * @throws  MissingElementException if toHere is null or nodes are not in the list or has invalid range
+ */
+public SLL<T> subseqByTransfer(NodeSL<T> afterHere, NodeSL<T> toHere) {
+  if (toHere == null) {
+    throw new MissingElementException("toHere cannot be null");
+  }
 
- }
+  /*
+   * case 1 : Extract from the head (afterHere == null)
+   */
+  if (afterHere == null) {
+    if (head == null || head == toHere.getNext()) {
+      throw new MissingElementException("invalid extraction range");
+  }
+    //find toHere starting from head
+    NodeSL<T> pointer = head;
+    boolean found = false;
+    while (pointer != null) {
+      if (pointer == toHere) {
+        found = true;
+        break;
+      }
+      pointer = pointer.getNext();
+    }
+    if (!found) {
+      throw new MissingElementException("toHere not found in list");
+    }
+    SLL<T> result = new SLL<>();
+    result.head = head;
+    result.tail = toHere;
+
+    // count nodes in extracted segment
+    int count = 0;
+    pointer = head;
+    while (pointer != null) {
+      count++;
+      if (pointer == toHere) break;
+      pointer = pointer.getNext();
+    }
+    result.size = count;
+
+    //update this list
+    head = toHere.getNext();
+    if (head== null) {
+      tail = null;
+    }
+    size -= result.size;
+
+    toHere.setNext(null);
+    return result;
+    }
+
+    //case 2: afterHere is not null(check it exists)
+    NodeSL<T> pointer = head;
+    boolean afterHereFound = false;
+    while (pointer != null) {
+      if (pointer == afterHere) {
+        afterHereFound = true;
+        break;
+      }
+      pointer = pointer.getNext();
+    }
+    if (!afterHereFound) {
+      throw new MissingElementException("afterHere not found in list");
+    }
+
+    if (afterHere.getNext() == null) {
+      throw new MissingElementException("No nodes after afterHere to extract");
+    }
+
+    //check toHere is reachable from afterhere
+    pointer = afterHere.getNext();
+    boolean toHereFound = false;
+    while (pointer != null){
+      if (pointer == toHere) {
+        toHereFound = true;
+        break;
+      }
+      pointer = pointer.getNext();
+    }
+    if (!toHereFound) {
+      throw new MissingElementException("toHere not found after afterHere");
+    }
+
+    //Perform extracton 
+    SLL<T> result = new SLL<>();
+    result.head = afterHere.getNext();
+    result.tail = toHere;
+
+    //count extracted nodes
+    int count = 0;
+    pointer = result.head;
+    while (pointer != null) {
+      count++;
+      if (pointer == toHere) break;
+      pointer = pointer.getNext();
+    }
+    result.size = count;
+
+    //rewrite this list
+    afterHere.setNext(toHere.getNext());
+    if (toHere.getNext() == null) {
+      tail = afterHere;
+    }
+    size -= result.size;
+
+    toHere.setNext(null);
+    return result;
+    }
+
+/**
+ * Transfer all nodes from list into this list, inserting them after afterHere
+ * leaves the source list empty
+ * 
+ * @param list the SLL whose nodes is transfered 
+ * @param afterHere the node after which to insert
+ * @throws MissingElementException if afterHere is not in this list
+ */
+public void spliceByTransfer(SLL<T> list, NodeSL<T> afterHere) {
+  if (list == null || list.isEmpty()) {
+    return; 
+  }
+
+  if (afterHere == null) {
+    //Insert at head
+      
+    if (this.isEmpty()) {
+      this.head = list.head;
+      this.tail = list.tail;
+    } else {
+      list.tail.setNext(this.head);
+      this.head = list.head;
+    }
+    this.size += list.size;
+  } else {
+
+    //verify afterHere is in thi list
+    NodeSL<T> pointer = this.head;
+    boolean found = false;
+    while (pointer != null) {
+      if (pointer == afterHere) {
+        found = true;
+        break;
+      }
+      pointer = pointer.getNext();
+    }
+    if (!found) {
+      throw new MissingElementException("afterHere not found in this list");
+    }
+
+    //insert list after afterHere
+    
+    list.tail.setNext(afterHere.getNext());
+    afterHere.setNext(list.head);
+
+    //update tail if inserted at end
+    if (afterHere == this.tail) {
+      this.tail = list.tail;
+    }
+    this.size += list.size;
+  }
+
+  /*
+    * empty the source list
+    */
+  list.head = null;
+  list.tail = null;
+  list.size = 0;
+}
+  }
+
+
+ 
