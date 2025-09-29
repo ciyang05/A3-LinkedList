@@ -4,7 +4,7 @@ Your readme should include the following information. **Each student** needs to 
 
 ## Submission Details
 
-Programming Partner Name (if you are submitting identical code):
+Programming Partner Name (if you are submitting identical code): Chiashi Yang, Shakila Jafari, Kiara Sunil Singh, Victoria Reyes Borges
 
 
 Other Collaborators (submitting related but non-identical code):
@@ -13,7 +13,7 @@ Other Collaborators (submitting related but non-identical code):
 Kudos/shout-out to particularly helpful members of the class or teaching staff:
 
 
-Any references used besides JavaDoc and course materials:
+Any references used besides JavaDoc and course materials: GeeksforGeeks
 
 
 If you used AI, please describe how and the interaction between AI and your understanding of this assignment and specifically the related data structures and algorithms:
@@ -28,4 +28,4 @@ What was the major challenge you faced in completing this assignment?
 
 What do you feel you learned from this assignment?
 
-
+Chiashi Yang - LinkedLists are definitely 
