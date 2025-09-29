@@ -70,7 +70,7 @@
     StringBuilder result = new StringBuilder();
     NodeSL<T> current = head;
     while (current != null){
-        result.append(current.getNext())
+        result.append(current.getData())
               .append(" ");
         current = current.getNext();
     }
@@ -91,7 +91,8 @@
       tail = newNode;
     } else {
        tail.setNext(newNode);
-       tail.newNode;
+       // changed tail.newNode into tail = newNode
+       tail = newNode;
     }
     size++;
   }
@@ -109,7 +110,9 @@
   public void addAfter(NodeSL<T> here, T v) {
     // Initializes pointer reference to head
     NodeSL<T> pointer = head;
-
+    if (here == null){
+      throw new MissingElementException("Cannot insert an element after a null node");
+    }
     // iterate over list to find node to insert item after
     while (pointer != null) {
       // checks if pointer data matches node to insert after data
@@ -198,6 +201,12 @@
   public T removeAfter(NodeSL<T> here) {
     if (isEmpty()){
       throw new MissingElementException("Cannot remove in an empty list");
+    }
+    if (here == null){
+      throw new MissingElementException("Node is null");
+    }
+    if (here.getNext()== null){
+      throw new MissingElementException("Cannot remove an element that does not exist")
     }
     NodeSL<T> pointer = head;
 
@@ -387,7 +396,9 @@ public void spliceByTransfer(SLL<T> list, NodeSL<T> afterHere) {
   if (list == null || list.isEmpty()) {
     return; 
   }
-
+  if (this == list){
+    throw new SelfInsertException("Cannot splice list into itself");
+  }
   if (afterHere == null) {
     //Insert at head
       
