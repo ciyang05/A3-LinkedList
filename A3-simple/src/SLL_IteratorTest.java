@@ -30,27 +30,27 @@ public class SLL_IteratorTest {
     public void test_iterator_basic1() {
         SLL<String> list = SLLTest.makeSLL(abc);
         SLL_Iterator<String> iter = new SLL_Iterator<>(list);
-        Assert.assertTrue("^ABC hasNext", iter.hasNext());
-        Assert.assertTrue("^ABC next == A", iter.next().equals("A"));
-        Assert.assertTrue("A^BC hasNext", iter.hasNext());
-        Assert.assertTrue("A^BC next == B", iter.next().equals("B"));
-        Assert.assertTrue("AB^C hasNext", iter.hasNext());
-        Assert.assertTrue("AB^C next == A", iter.next().equals("C"));
-        Assert.assertTrue("ABC^ !hasNext", !iter.hasNext());
+        assertTrue("^ABC hasNext", iter.hasNext());
+        assertTrue("^ABC next == A", iter.next().equals("A"));
+        assertTrue("A^BC hasNext", iter.hasNext());
+        assertTrue("A^BC next == B", iter.next().equals("B"));
+        assertTrue("AB^C hasNext", iter.hasNext());
+        assertTrue("AB^C next == A", iter.next().equals("C"));
+        assertTrue("ABC^ !hasNext", !iter.hasNext());
     }
 
     @Test
     public void test_iterator_basic2() {
         SLL<String> list = SLLTest.makeSLL(empty);
         SLL_Iterator<String> iter = new SLL_Iterator<String>(list);
-        Assert.assertTrue("^empty hasNext", !iter.hasNext());
+        assertTrue("^empty hasNext", !iter.hasNext());
     }
 
     @Test
     public void test_iterator_set1() {
         SLL<String> list = SLLTest.makeSLL(empty);
         SLL_Iterator<String> iter = new SLL_Iterator<>(list);
-        Assert.assertThrows("exception on initial set",
+        assertThrows("exception on initial set",
             MissingElementException.class,
             () -> { iter.set("D");});
     }
@@ -62,18 +62,18 @@ public class SLL_IteratorTest {
         iter1.next();
         iter1.set("D");
         String s = SLLTest.verifySLL(list, dbc);
-        Assert.assertTrue("A^BC.set(D)->DBC" + s, s.equals(""));
+        assertTrue("A^BC.set(D)->DBC" + s, s.equals(""));
         iter1.next();
         iter1.set("A");
         s = SLLTest.verifySLL(list, dac);
-        Assert.assertTrue("D^BC.set(A)->DAC" + s, s.equals(""));
+        assertTrue("D^BC.set(A)->DAC" + s, s.equals(""));
         iter1.set("E");
         s = SLLTest.verifySLL(list, dec);
-        Assert.assertTrue("D^AC.set(E)->DEC" + s, s.equals(""));
+        assertTrue("D^AC.set(E)->DEC" + s, s.equals(""));
         iter1.next();
         iter1.set("F");
         s = SLLTest.verifySLL(list, def);
-        Assert.assertTrue("DE^C.set(F)->DEF" + s, s.equals(""));
+        assertTrue("DE^C.set(F)->DEF" + s, s.equals(""));
     }
 
     @Test
@@ -82,32 +82,33 @@ public class SLL_IteratorTest {
         SLL_Iterator<String> iter = new SLL_Iterator<>(list);
         iter.add("A");
         String s = SLLTest.verifySLL(list, a);
-        Assert.assertTrue("empty.add(A)->A" + s, s.equals(""));
+        
+        assertTrue("empty.add(A)->A" + s, s.equals(""));
         iter.add("B");
         s = SLLTest.verifySLL(list, ab);
-        Assert.assertTrue("A^.add(B)->AB" + s, s.equals(""));
+       assertTrue("A^.add(B)->AB" + s, s.equals(""));
         list = SLLTest.makeSLL(bac);
         iter = new SLL_Iterator<>(list);
         iter.add("D");
         s = SLLTest.verifySLL(list, dbac);
-        Assert.assertTrue("^BAC.add(D)->DBAC" + s, s.equals(""));
+        assertTrue("^BAC.add(D)->DBAC" + s, s.equals(""));
         iter.add("E");
         s = SLLTest.verifySLL(list, debac);
-        Assert.assertTrue("D^BAC.add(E)->DEBAC" + s, s.equals(""));
+        assertTrue("D^BAC.add(E)->DEBAC" + s, s.equals(""));
         iter.next();
         iter.next();
         iter.next();
         iter.add("F");
         iter.add("G");
         s = SLLTest.verifySLL(list, debacfg);
-        Assert.assertTrue("DEBAC^.add(F).add(G)->DEBACFG" + s, s.equals(""));
+        assertTrue("DEBAC^.add(F).add(G)->DEBACFG" + s, s.equals(""));
         list = SLLTest.makeSLL(abc);
         iter = new SLL_Iterator<>(list);
         iter.next();
         iter.next();
         iter.add("D");
         s = SLLTest.verifySLL(list, abdc);
-        Assert.assertTrue("AB^C.add(D)->ABDC" + s, s.equals(""));
+       assertTrue("AB^C.add(D)->ABDC" + s, s.equals(""));
 
     }
 
@@ -115,14 +116,14 @@ public class SLL_IteratorTest {
     public void test_iterator_remove() {
         SLL<String> list = SLLTest.makeSLL(empty);
         SLL_Iterator<String> iter = new SLL_Iterator<>(list);
-        Assert.assertThrows("exception on empty remove",
+        assertThrows("exception on empty remove",
                 MissingElementException.class,
                 () -> {
                     iter.remove();
                 });
         list = SLLTest.makeSLL(bac);
         SLL_Iterator<String> iter2 = new SLL_Iterator<>(list);
-        Assert.assertThrows("exception on initial remove",
+        assertThrows("exception on initial remove",
                 MissingElementException.class,
                 () -> {
                     iter2.remove();
@@ -130,8 +131,8 @@ public class SLL_IteratorTest {
         iter2.next();
         iter2.remove();
         String s = SLLTest.verifySLL(list, ac);
-        Assert.assertTrue("B^AC.remove->AC" + s, s.equals(""));
-        Assert.assertThrows("exception on second remove",
+        assertTrue("B^AC.remove->AC" + s, s.equals(""));
+        assertThrows("exception on second remove",
                 MissingElementException.class,
                 () -> {
                     iter2.remove();
@@ -140,11 +141,11 @@ public class SLL_IteratorTest {
         iter2.next();
         iter2.remove();
         s = SLLTest.verifySLL(list, a);
-        Assert.assertTrue("AC^.remove->A" + s, s.equals(""));
+        assertTrue("AC^.remove->A" + s, s.equals(""));
         SLL_Iterator<String> iter3 = new SLL_Iterator<>(list);
         iter3.next();
         iter3.remove();
         s = SLLTest.verifySLL(list, empty);
-        Assert.assertTrue("A^.remove->empty" + s, s.equals(""));
+        assertTrue("A^.remove->empty" + s, s.equals(""));
     }
 }
