@@ -120,11 +120,16 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      * Cannot be called twice in a row without intervening next()
      */
     public void remove() {
+        // if true, that means iterator hasn't moved and is not on the right of a node. 
+        // returns
         if (onLeft) {
             return;
-        }
-
-        
+        } else {
+            // create a node to keep track of the previous node of the node we want to remove
+            NodeSL<T> prev = new NodeSL<>(pos.getData(), pos.getNext());
+            // sets the prev node to point to the next next node, removing the node we want
+            prev.setNext(pos.getNext().getNext());
+        }        
 
     }
 }
