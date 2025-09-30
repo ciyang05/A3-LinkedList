@@ -38,9 +38,6 @@
     this.size = 0;
   }
 
-  // //making new empty constructor
-  // SLL <String> list = new SLL<>();
-
 
   /** 
    *  Accessor for head node
@@ -130,27 +127,20 @@
    *  @param v item to insert 
    */
   public void addAfter(NodeSL<T> here, T v) {
-    // Initializes pointer reference to head
-    NodeSL<T> pointer = head;
+    // throws an error if node to insert after is null
     if (here == null){
       throw new MissingElementException("Cannot insert an element after a null node");
-    }
-    // iterate over list to find node to insert item after
-    while (pointer != null) {
-      // checks if pointer data matches node to insert after data
-      if (pointer == here) {
-        // for testing purposes
-        // System.out.println("The node exists.");
-        break;
-      }
-      // reassigns pointer to next node in list
-      pointer = pointer.getNext();
-    }
+    } else {
+      // create a newNode with data v and have it link to the next node of here
+      NodeSL<T> newNode = new NodeSL<>(v, here.getNext());
+      // set here to link to the newNode
+      here.setNext(newNode);
 
-    // creates newNode that sets v as its data and links to pointer's next node
-    NodeSL<T> newNode = new NodeSL<T>(v, pointer.getNext());
-    // links pointer to newNode 
-    pointer.setNext(newNode);
+      // if here node is the tail, set the new tail to be newNode
+      if (here == tail) {
+        tail = newNode;
+      }
+    }
 
   }
 
