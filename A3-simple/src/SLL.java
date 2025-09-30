@@ -5,9 +5,10 @@
  * @version Spring 2024
  */
 
- public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T> {
+ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   // Attributes 
+
 
   /**
    * Head of the SLL
@@ -27,6 +28,21 @@
   SLL<T> SLL; 
     
   // Phase 1
+
+  /**
+   * Copy constructor 
+   */
+  public SLL(){
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  //making new empty constructor
+  SLL <String> list = new SLL<>();
+
+
+
   /** 
    *  Accessor for head node
    *  @return the head node
