@@ -78,18 +78,25 @@
   public void addFirst(T v){
     NodeSL<T> newNode = new NodeSL<>(v, head);
     head = newNode;
+    if (tail == null){
+      tail = newNode;
+    }
+    size++;
   }
   
   /** Converts to a string representation */
   public String toString(){
-    StringBuilder result = new StringBuilder();
+    StringBuilder result = new StringBuilder("[");
     NodeSL<T> current = head;
     while (current != null){
-        result.append(current.getData())
-              .append(" ");
+        result.append(current.getData());
+        if (current.getNext() != null){
+          result.append(", ");
+        }
+              
         current = current.getNext();
     }
-    
+    result.append("]");
     return result.toString().trim();
 
   }
@@ -297,7 +304,7 @@
      this.addLast(current.getData());
      current = current.getNext();
    }
-
+  
 
    
 
