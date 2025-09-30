@@ -5,7 +5,7 @@
  * @version Spring 2024
  */
 
- public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL {
+ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   // Attributes 
 
