@@ -350,7 +350,9 @@
   * @param afterHere  marks the position in this where the new list should go
   */
  public void spliceByCopy(SLL<T> list, NodeSL<T> afterHere){
-  
+  if (this == list){
+    throw new SelfInsertException("Cannot splice a list into itself");
+  }
    //copying list
    SLL<T> copy = new SLL<>(list);
 
@@ -505,6 +507,7 @@ public void spliceByTransfer(SLL<T> list, NodeSL<T> afterHere) {
   if (this == list){
     throw new SelfInsertException("Cannot splice list into itself");
   }
+  
   if (afterHere == null) {
     //Insert at head
       
