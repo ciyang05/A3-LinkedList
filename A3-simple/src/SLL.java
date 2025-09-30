@@ -260,21 +260,26 @@
     int count = 0;
     NodeSL<T> pointer = head;
 
-    // checks if next node isn't null, then increments 1 to counter
-    while(pointer.getNext() != null) {
-      count = count + 1;
-    }
+      // checks if next node isn't null, then increments 1 to counter
+     while(pointer != null) {
+     count++;
+     pointer = pointer.getNext();
+    
+   }
+   // updates size attribute to counter
+     //this.size = count;
 
-    // updates size attribute to counter
-    this.size = count;
 
-    // for testing purposes
-    // checks if count and current size match
-    System.out.println("This is the count: " + count);
-    System.out.println("This is the current size: " + size);
+   // for testing purposes
+   // checks if count and current size match
+   System.out.println("This is the count: " + count);
+   System.out.println("This is the current size: " + size);
 
-    return count;
-  }
+
+   return count;
+ }
+
+  
 
 
 // Phase 4
