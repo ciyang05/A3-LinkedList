@@ -117,7 +117,6 @@
   }
 
 
-  // NOT tested yet
   // referenced geeksforgeeks
   // Chiashi
   /** 
@@ -215,40 +214,21 @@
     }
     if (here.getNext()== null){
       throw new MissingElementException("Cannot remove an element that does not exist");
+    } 
+      
+    NodeSL<T> removedNode = here.getNext();
+
+    here.setNext(removedNode.getNext());
+
+    if (removedNode == tail) {
+      tail = here;
     }
-    NodeSL<T> pointer = head;
-
-    while (pointer != null) {
-      if (pointer == here) {
-        // System.out.println("The node exists");
-        break;
-      }
-      pointer = pointer.getNext();
-    }
-
-    // assigns removedItem to variable to return later
-    NodeSL<T> removedNode = pointer.getNext();
-    // for testing purposes
-    // prints removedNode before link to pointer updates
-    // System.out.println("This is the removedNode before link to pointer updates: " + removedNode.getData());
-
-    // updates pointer's link to next next node
-    pointer.setNext(pointer.getNext().getNext());
-    // for testing purposes
-    // prints removedNode after linking to pointer updates 
-    // System.out.println("This is the removedNode after updating pointer: " + removedNode.getData());
-
-    // for testing purposes
-    // prints SLL to see if item got removed
-    // System.out.println("This is the updated SLL after removing item: " + SLL.toString());
-
 
     return removedNode.getData();
 
   }
 
 
-  // NOT tested yet
   // Chiashi
   /**
    *  Returns a count of the number of elements in the list
@@ -266,15 +246,8 @@
      pointer = pointer.getNext();
     
    }
-   // updates size attribute to counter
-     //this.size = count;
-
-
-   // for testing purposes
-   // checks if count and current size match
-   System.out.println("This is the count: " + count);
-   System.out.println("This is the current size: " + size);
-
+    // //  updates size attribute to counter
+    // this.size = count;
 
    return count;
  }
