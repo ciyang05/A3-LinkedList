@@ -38,8 +38,8 @@
     this.size = 0;
   }
 
-  //making new empty constructor
-  SLL <String> list = new SLL<>();
+  // //making new empty constructor
+  // SLL <String> list = new SLL<>();
 
 
 
@@ -91,7 +91,7 @@
         current = current.getNext();
     }
     
-    return result.toString();
+    return result.toString().trim();
 
   }
 
@@ -134,7 +134,7 @@
       // checks if pointer data matches node to insert after data
       if (pointer == here) {
         // for testing purposes
-        System.out.println("The node exists.");
+        // System.out.println("The node exists.");
         break;
       }
       // reassigns pointer to next node in list
@@ -145,10 +145,6 @@
     NodeSL<T> newNode = new NodeSL<T>(v, pointer.getNext());
     // links pointer to newNode 
     pointer.setNext(newNode);
-
-    // for testing purposes
-    // prints SLL to see if item got added
-    System.out.println("This is the SLL after adding item: " + SLL.toString());
 
   }
 
@@ -228,7 +224,7 @@
 
     while (pointer != null) {
       if (pointer == here) {
-        System.out.println("The node exists");
+        // System.out.println("The node exists");
         break;
       }
       pointer = pointer.getNext();
@@ -238,17 +234,17 @@
     NodeSL<T> removedNode = pointer.getNext();
     // for testing purposes
     // prints removedNode before link to pointer updates
-    System.out.println("This is the removedNode before link to pointer updates: " + removedNode.getData());
+    // System.out.println("This is the removedNode before link to pointer updates: " + removedNode.getData());
 
     // updates pointer's link to next next node
     pointer.setNext(pointer.getNext().getNext());
     // for testing purposes
     // prints removedNode after linking to pointer updates 
-    System.out.println("This is the removedNode after updating pointer: " + removedNode.getData());
+    // System.out.println("This is the removedNode after updating pointer: " + removedNode.getData());
 
     // for testing purposes
     // prints SLL to see if item got removed
-    System.out.println("This is the updated SLL after removing item: " + SLL.toString());
+    // System.out.println("This is the updated SLL after removing item: " + SLL.toString());
 
 
     return removedNode.getData();
@@ -283,23 +279,115 @@
 
     return count;
   }
+
+
+// Phase 4
+
+
+ //copy constructor
+ public SLL(SLL<T> other){
+   this.head = null;
+   this.tail = null;
+   this.size = 0;
+
+
+   NodeSL<T> current = other.getHead();
+
+
+   while(current != null){
+     this.addLast(current.getData());
+   }
+
+
+   current = current.getNext();
+
+ }
+
+
+ /**
+  *  Makes a copy of elements from the original list
+  *  @param here  starting point of copy
+  *  @param n  number of items to copy
+  *  @return copied list
+  */
+ public SLL<T> subseqByCopy(NodeSL<T> here, int n){
+
+
+   //if the started point is null, then exception
+   if(here == null){
+     throw new IllegalArgumentException("Head can not be null.");
+   }
+
+
+   //if no nodes, then exception
+   if(n < 0){
+     throw new IllegalArgumentException("You must have nodes or the number of nodes can not be negative.");
+   }
+
+
+   //empty list
+   SLL <T> copy = new SLL<>();
+
+
+   for(int i = 0; i < n; i++){
+     T data = here.getData();
+     copy.addLast(data);
+     here = here.getNext();
+   }
+
+
+   return copy;
+
+
+ }
+
+
   /**
- * extract a subseq from this list and returns it as a new SLL
- * the subseq starts after afterHere and ends at toHere
- * 
- * @param afterHere the node after which extraction begins (null mean start fromhead)
- * @param toHere the last node to extract
- * @return a new SLl that contains the extracted subseq
- * @throws  MissingElementException if toHere is null or nodes are not in the list or has invalid range
- */
+  * Places copy of the provided list into this after the specified node.
+  * @param list the list to splice in a copy of
+  * @param afterHere  marks the position in this where the new list should go
+  */
+ public void spliceByCopy(SLL<T> list, NodeSL<T> afterHere){
+  
+   //copying list
+   SLL<T> copy = new SLL<>(list);
+
+
+
+
+   NodeSL<T> tail = copy.getHead();
+
+
+    while(tail.getNext() != null){ // while the next node after the head is not empty
+       tail = tail.getNext(); //keep moving until the node has null as the next node aka the last node, making it the tail
+    }
+
+
+    //set the next node after the tail to be the next element after the afterHere
+    tail.setNext(afterHere.getNext());
+
+
+    //make afterHere's next node to be the head of the copied list
+    afterHere.setNext(copy.getHead());
+
+ }
+
+  /**
+  * extract a subseq from this list and returns it as a new SLL
+  * the subseq starts after afterHere and ends at toHere
+  * 
+  * @param afterHere the node after which extraction begins (null mean start fromhead)
+  * @param toHere the last node to extract
+  * @return a new SLl that contains the extracted subseq
+  * @throws  MissingElementException if toHere is null or nodes are not in the list or has invalid range
+  */
 public SLL<T> subseqByTransfer(NodeSL<T> afterHere, NodeSL<T> toHere) {
   if (toHere == null) {
     throw new MissingElementException("toHere cannot be null");
   }
 
-  /*
-   * case 1 : Extract from the head (afterHere == null)
-   */
+
+  // case 1 : Extract from the head (afterHere == null)
   if (afterHere == null) {
     if (head == null || head == toHere.getNext()) {
       throw new MissingElementException("invalid extraction range");
@@ -398,7 +486,7 @@ public SLL<T> subseqByTransfer(NodeSL<T> afterHere, NodeSL<T> toHere) {
 
     toHere.setNext(null);
     return result;
-    }
+  }
 
 /**
  * Transfer all nodes from list into this list, inserting them after afterHere
