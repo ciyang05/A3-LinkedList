@@ -42,7 +42,6 @@
   // SLL <String> list = new SLL<>();
 
 
-
   /** 
    *  Accessor for head node
    *  @return the head node
@@ -296,10 +295,11 @@
 
    while(current != null){
      this.addLast(current.getData());
+     current = current.getNext();
    }
 
 
-   current = current.getNext();
+   
 
  }
 
