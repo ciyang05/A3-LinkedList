@@ -103,11 +103,18 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
             return;
         }
 
-        // creates new node/elemeent w/specified data
-        NodeSL<T> newNode = new NodeSL<>(data, pos.getNext());
+        if (pos == null) {
+            NodeSL<T> newNode = new NodeSL<>(data, null);
+            pos.getHead() = newNode;
+        } else {
+            while (pos.getNext() != null) {
+                pos = pos.getNext();
+            }
+            NodeSL<T> newNode = new NodeSL<>(data, pos.getNext());
+            // links next node of pos to be newNode
+            pos.setNext(newNode);
 
-        // links next node of pos to be newNode
-        pos.setNext(newNode);
+        }
 
         // // sets pos to newNode
         // pos = newNode;

@@ -206,25 +206,43 @@
    *  @return item removed
    */
   public T removeAfter(NodeSL<T> here) {
+    // this means here is before the head, so it is null
+    if (here == null) {
+      // create a new node reference that points to head
+      NodeSL<T> toRemove = head;
+      // get the data of the new node
+      T data = toRemove.getData();
+
+      // reassign head to the next node of head
+      head = head.getNext();
+      // if the node to be removed is also the tail, make the tail null
+      if (toRemove == tail) {
+        tail = null;
+      }
+
+      return data;
+    }
     if (isEmpty()){
       throw new MissingElementException("Cannot remove in an empty list");
     }
-    if (here == null){
-      throw new MissingElementException("Node is null");
-    }
-    if (here.getNext()== null){
+    if (here.getNext() == null){
       throw new MissingElementException("Cannot remove an element that does not exist");
     } 
-      
-    NodeSL<T> removedNode = here.getNext();
 
+    // create node reference to next node of here, the one to be removed
+    NodeSL<T> removedNode = here.getNext();
+    // get data of node to be removed
+    T data = removedNode.getData();
+
+    // link here to the node after the node to be removed
     here.setNext(removedNode.getNext());
 
+    // if the node to be removed is the tail, reassign tail to here
     if (removedNode == tail) {
       tail = here;
     }
 
-    return removedNode.getData();
+    return data;
 
   }
 
