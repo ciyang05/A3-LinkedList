@@ -22,9 +22,9 @@ _YES____ 1 pts: Program throws appropriate exceptions (with informative error me
 
 __YES___ 1 pt: Passes all phase 3 tests for singly linked list
 
-__YES___ 1 pt: Phase 4 methods implemented efficiently for singly linked list
+__PART___ 1 pt: Phase 4 methods implemented efficiently for singly linked list
 
-_YES____ 1 pt: Passes all phase 4 tests for singly linked list
+_PART____ 1 pt: Passes all phase 4 tests for singly linked list
 
 
 ## Kudos (Extra Challenge):
