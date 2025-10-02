@@ -118,7 +118,6 @@
 
 
   // referenced geeksforgeeks
-  // Chiashi
   /** 
    *  Inserts the given item after the specified node
    * 
@@ -196,9 +195,7 @@
     return data;
   }
 
-  
-  // NOT tested yet
-  // Chiashi
+
   /** 
    *  Removes the node after the given position
    * 
@@ -247,7 +244,6 @@
   }
 
 
-  // Chiashi
   /**
    *  Returns a count of the number of elements in the list
    * 
@@ -264,8 +260,6 @@
      pointer = pointer.getNext();
     
    }
-    // //  updates size attribute to counter
-    // this.size = count;
 
    return count;
  }

@@ -20,20 +20,33 @@ If you used AI, please describe how and the interaction between AI and your unde
 
 ## Reflection
 
-What do you see as the benefits and downsides of working with linked lists instead of arrays? When might they be most useful versus limiting?
+**What do you see as the benefits and downsides of working with linked lists instead of arrays? When might they be most useful versus limiting?**
 
 Shakila- Linked lists are great when we need to add or remove items a lot, especially at the beginning or middle! because we don’t have to move everything around like we do with arrays. We just change a few pointers, and it’s fast!But also they are slow too, because we need to go through all of nodes to reach the one we want which takes more time. So linked lists work best when we wanna do lots of inserts and deletes. 
 
 Kiara - I think linked lists are very beneficial when the list is expected to change a lot because the memory is easier to work with since it works dynamically. Therefore, if you need to add or remove something it is a lot more efficient in linked lists since the memory allocation is more efficient. However, in order to access a certain element in the linked list you have to traverse the entire list and it can be inconvenient if the linked list is very long.
 
+Chiashi - Some of the benefits of working with linked lists is that removing and adding elements are easier. It's quicker than arrays, as linked lists are dynamic. A downside of linked lists is that accessing an element takes longer than arrays. Because linked lists don't necessarily have an index, in order to access an element, you must traverse through the whole list, compared to arrays where you just need the index to get to the element. They will be most useful when adding and removing elements but limiting when accessing an element.
 
-What was the major challenge you faced in completing this assignment?
+Victoria - I think a benefit from working with linked lists can be manipulated easier than arrays, whether we can add or remove elements. They could be really useful for when we need some type of list that is not necessarily in order or that needs to be organized constantly due to an increasing amount of data load; they could be limiting when the linked list is long and needs a lot of pointers.
+
+
+**What was the major challenge you faced in completing this assignment?**
+
 Shakila- I think it was the transfer methods (subseqByTransfer and spliceByTransfer). Because we were supposed to move big pieces of the list just by rewiring a few pointers. It was easy to keep breaking the list or leaving nodes floating with no connection. Also, there were so many special cases to consider like What if the list is empty? What if which one are we moving the first or last item?
 
 Kiara - One major challenge I faced was identifying the logic behind each method and understanding how to write the methods. This is because I have never worked with linked lists before so it was a little challenging to figure out how the pointers and iterators worked.
 
-What do you feel you learned from this assignment?
+Chiashi - A major challenge I faced in completing this assignment was understanding how iterators worked in code. Conceptually, I knew how they worked but actually writing the code was difficult. In addition, it was challenging to write out the logic of linked lists, as I wasn't sure if the methods needed to include loops or not.
+
+Victoria - I found some of the logic, specially working with nodes, to be confusing at times. I would understand at the moment but then forget, and needing to refer back to my notes.
+
+**What do you feel you learned from this assignment?**
 
 Shakila- I learned that linked lists look simple in theory by doing all those activities we were doing in class but they’re tricky to get right in code! Because we have to think carefully about every pointer and always keep the head, tail, and size in sync.
 
 Kiara- I have definitelly learned more about the different functions of a linked lists and how they work. Specifically I now better understand how to reassign pointers and add or remove elements from a linked list. 
+
+Chiashi - I learned about how to create an actual linked list from scratch and how they work. This assignment helped me better understand the different actions of linked lists and how to implement them. 
+
+Victoria - I learned how to play with linked lists and understand some confusing logic!
