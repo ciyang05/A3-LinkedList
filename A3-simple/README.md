@@ -22,11 +22,15 @@ If you used AI, please describe how and the interaction between AI and your unde
 
 What do you see as the benefits and downsides of working with linked lists instead of arrays? When might they be most useful versus limiting?
 
+Shakila- Linked lists are great when we need to add or remove items a lot, especially at the beginning or middle! because we don’t have to move everything around like we do with arrays. We just change a few pointers, and it’s fast!But also they are slow too, because we need to go through all of nodes to reach the one we want which takes more time. So linked lists work best when we wanna do lots of inserts and deletes. 
 
+Kiara - I think linked lists are very beneficial when the list is expected to change a lot because the memory is easier to work with since it works dynamically. Therefore, if you need to add or remove something it is a lot more efficient in linked lists since the memory allocation is more efficient. However, in order to access a certain element in the linked list you have to traverse the entire list and it can be inconvenient if the linked list is very long.
 
 
 What was the major challenge you faced in completing this assignment?
+Shakila- I think it was the transfer methods (subseqByTransfer and spliceByTransfer). Because we were supposed to move big pieces of the list just by rewiring a few pointers. It was easy to keep breaking the list or leaving nodes floating with no connection. Also, there were so many special cases to consider like What if the list is empty? What if which one are we moving the first or last item?
 
+Kiara - One major challenge I faced was identifying the logic behind each method and understanding how to write the methods. This is because I have never worked with linked lists before so it was a little challenging to figure out how the pointers and iterators worked.
 
 What do you feel you learned from this assignment?
 
