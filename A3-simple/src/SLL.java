@@ -338,13 +338,21 @@
   if (this == list){
     throw new SelfInsertException("Cannot splice a list into itself");
   }
-   //copying list
+   // copying nodes of list
    SLL<T> copy = new SLL<>(list);
 
 
+  // while (afterHere != null) {
+  //   NodeSL<T> pointer = copy.getHead();
+  //   NodeSL<T> newNode;
+    
+  //   pointer.setNext(afterHere.getNext());
+  //   afterHere.setNext(pointer);
+  //   pointer = pointer.getNext();
+  //   afterHere = afterHere.getNext();
+  // }
 
-
-   NodeSL<T> tail = copy.getHead();
+   tail = copy.getHead();
 
 
     while(tail.getNext() != null){ // while the next node after the head is not empty
