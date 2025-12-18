@@ -155,7 +155,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
         tail = newNode;
       }
     }
-    this.size += 1;
+    this.size ++;
 
   }
 
