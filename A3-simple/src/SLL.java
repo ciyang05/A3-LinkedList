@@ -30,15 +30,15 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
   /**
    * Creates an empty list
    */
-  public SLL(){
+  public SLL() {
     this.head = null;
     this.tail = null;
     this.size = 0;
   }
 
-
   /**
    * Copy constructor, creates deep copy of LL object that's passed in
+   * 
    * @param other LL to make a deep copy of
    */
   public SLL(SLL<T> other) {
@@ -57,6 +57,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Accessor for head node
+   * 
    * @return head node
    */
   public NodeSL<T> getHead() {
@@ -65,6 +66,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Accessor for tail node
+   * 
    * @return the tail node
    */
   public NodeSL<T> getTail() {
@@ -73,18 +75,16 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Determines whether a list is empty
+   * 
    * @return T/F is the list empty?
    */
   public boolean isEmpty() {
-    if (head == null) {
-      return true;
-    } else {
-      return false;
-    }
+    return head == null;
   }
 
   /**
    * Inserts the given item at the head of the list
+   * 
    * @param v item to insert
    */
   public void addFirst(T v) {
@@ -117,6 +117,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Inserts the given item at the tail of the list
+   * 
    * @param item to insert
    */
   public void addLast(T v) {
@@ -135,8 +136,9 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
   // referenced geeksforgeeks
   /**
    * Inserts the given item after the specified node
+   * 
    * @param here node to insert after
-   * @param v item to insert
+   * @param v    item to insert
    */
   public void addAfter(NodeSL<T> here, T v) {
     // throws an error if node to insert after is null
@@ -153,11 +155,13 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
         tail = newNode;
       }
     }
+    this.size += 1;
 
   }
 
   /**
    * Removes the given item from the head of the list
+   * 
    * @return v item removed
    * @throws MissingElementException if the list is empty
    */
@@ -179,6 +183,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Removes the given item from the tail of the list
+   * 
    * @return item removed
    * @throws MissingElementException if the list is empty
    */
@@ -210,6 +215,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Removes the node after the given position
+   * 
    * @param here marks position to remove after
    * @return item removed
    */
@@ -256,6 +262,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Returns a count of the number of elements in the list
+   * 
    * @return current number of nodes
    */
   public int size() {
@@ -275,6 +282,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Makes a copy of elements from the original list
+   * 
    * @param here starting point of copy
    * @param n    number of items to copy
    * @return copied list
@@ -306,7 +314,8 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Places copy of the provided list into this after the specified node.
-   * @param list the list to splice in a copy of
+   * 
+   * @param list      the list to splice in a copy of
    * @param afterHere marks the position in this where the new list should go
    */
   public void spliceByCopy(SLL<T> list, NodeSL<T> afterHere) {
@@ -332,15 +341,20 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
       }
     }
 
+    this.size += copy.size();
+
   }
 
   /**
    * extract a subseq from this list and returns it as a new SLL
    * the subseq starts after afterHere and ends at toHere
-   * @param afterHere the node after which extraction begins (null mean start from head)
-   * @param toHere the last node to extract
+   * 
+   * @param afterHere the node after which extraction begins (null mean start from
+   *                  head)
+   * @param toHere    the last node to extract
    * @return a new SLl that contains the extracted subseq
-   * @throws MissingElementException if toHere is null or nodes are not in the list or has invalid range
+   * @throws MissingElementException if toHere is null or nodes are not in the
+   *                                 list or has invalid range
    */
   public SLL<T> subseqByTransfer(NodeSL<T> afterHere, NodeSL<T> toHere) {
     if (toHere == null) {
@@ -453,7 +467,8 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
   /**
    * Transfer all nodes from list into this list, inserting them after afterHere
    * leaves the source list empty
-   * @param list the SLL whose nodes is transfered
+   * 
+   * @param list      the SLL whose nodes is transfered
    * @param afterHere the node after which to insert
    * @throws MissingElementException if afterHere is not in this list
    */
