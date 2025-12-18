@@ -57,25 +57,22 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Accessor for head node
-   * 
    * @return head node
    */
   public NodeSL<T> getHead() {
-    return head;
+    return this.head;
   }
 
   /**
    * Accessor for tail node
-   * 
    * @return the tail node
    */
   public NodeSL<T> getTail() {
-    return tail;
+    return this.tail;
   }
 
   /**
    * Determines whether a list is empty
-   * 
    * @return T/F is the list empty?
    */
   public boolean isEmpty() {
@@ -88,7 +85,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Inserts the given item at the head of the list
-   * 
    * @param v item to insert
    */
   public void addFirst(T v) {
@@ -121,7 +117,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Inserts the given item at the tail of the list
-   * 
    * @param item to insert
    */
   public void addLast(T v) {
@@ -140,9 +135,8 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
   // referenced geeksforgeeks
   /**
    * Inserts the given item after the specified node
-   * 
    * @param here node to insert after
-   * @param v    item to insert
+   * @param v item to insert
    */
   public void addAfter(NodeSL<T> here, T v) {
     // throws an error if node to insert after is null
@@ -164,7 +158,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Removes the given item from the head of the list
-   * 
    * @return v item removed
    * @throws MissingElementException if the list is empty
    */
@@ -186,7 +179,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Removes the given item from the tail of the list
-   * 
    * @return item removed
    * @throws MissingElementException if the list is empty
    */
@@ -218,7 +210,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Removes the node after the given position
-   * 
    * @param here marks position to remove after
    * @return item removed
    */
@@ -265,7 +256,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Returns a count of the number of elements in the list
-   * 
    * @return current number of nodes
    */
   public int size() {
@@ -285,7 +275,6 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Makes a copy of elements from the original list
-   * 
    * @param here starting point of copy
    * @param n    number of items to copy
    * @return copied list
@@ -303,7 +292,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
     }
 
     // empty list
-    SLL<T> copy = new SLL<>(null);
+    SLL<T> copy = new SLL<>();
 
     for (int i = 0; i < n; i++) {
       T data = here.getData();
@@ -317,52 +306,41 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
 
   /**
    * Places copy of the provided list into this after the specified node.
-   * 
-   * @param list      the list to splice in a copy of
+   * @param list the list to splice in a copy of
    * @param afterHere marks the position in this where the new list should go
    */
   public void spliceByCopy(SLL<T> list, NodeSL<T> afterHere) {
-    if (this == list) {
+
+    if (this.equals(list)) {
       throw new SelfInsertException("Cannot splice a list into itself");
     }
+
     // copying nodes of list
     SLL<T> copy = new SLL<>(list);
 
-    // while (afterHere != null) {
-    // NodeSL<T> pointer = copy.getHead();
-    // NodeSL<T> newNode;
-
-    // pointer.setNext(afterHere.getNext());
-    // afterHere.setNext(pointer);
-    // pointer = pointer.getNext();
-    // afterHere = afterHere.getNext();
-    // }
-
-    tail = copy.getHead();
-
-    while (tail.getNext() != null) { // while the next node after the head is not empty
-      tail = tail.getNext(); // keep moving until the node has null as the next node aka the last node,
-                             // making it the tail
+    if (afterHere != null) {
+      copy.getTail().setNext(afterHere.getNext());
+      afterHere.setNext(copy.getHead());
+      if (afterHere == this.tail) {
+        this.tail = copy.getTail();
+      }
+    } else {
+      copy.getTail().setNext(this.getHead());
+      this.head = copy.getHead();
+      if (this.tail == null) {
+        this.tail = copy.getTail();
+      }
     }
-
-    // set the next node after the tail to be the next element after the afterHere
-    tail.setNext(afterHere.getNext());
-
-    // make afterHere's next node to be the head of the copied list
-    afterHere.setNext(copy.getHead());
 
   }
 
   /**
    * extract a subseq from this list and returns it as a new SLL
    * the subseq starts after afterHere and ends at toHere
-   * 
-   * @param afterHere the node after which extraction begins (null mean start
-   *                  fromhead)
-   * @param toHere    the last node to extract
+   * @param afterHere the node after which extraction begins (null mean start from head)
+   * @param toHere the last node to extract
    * @return a new SLl that contains the extracted subseq
-   * @throws MissingElementException if toHere is null or nodes are not in the
-   *                                 list or has invalid range
+   * @throws MissingElementException if toHere is null or nodes are not in the list or has invalid range
    */
   public SLL<T> subseqByTransfer(NodeSL<T> afterHere, NodeSL<T> toHere) {
     if (toHere == null) {
@@ -475,8 +453,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
   /**
    * Transfer all nodes from list into this list, inserting them after afterHere
    * leaves the source list empty
-   * 
-   * @param list      the SLL whose nodes is transfered
+   * @param list the SLL whose nodes is transfered
    * @param afterHere the node after which to insert
    * @throws MissingElementException if afterHere is not in this list
    */
@@ -527,9 +504,7 @@ public class SLL<T> implements Phase1SLL<T>, Phase2SLL<T>, Phase4SLL<T> {
       this.size += list.size;
     }
 
-    /*
-     * empty the source list
-     */
+    // empty the source list
     list.head = null;
     list.tail = null;
     list.size = 0;

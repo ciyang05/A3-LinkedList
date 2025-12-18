@@ -19,7 +19,7 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
 
     /**
      * Constructor
-     * Creates a new iterator on the given list.
+     * Creates a new iterator on the given list
      * Default position is leftmost
      * 
      * @param list the list to iterate on
@@ -94,7 +94,6 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
     /**
      * Inserts a node with the specified data
      * Cannot be called twice in a row without intervening next()
-     * 
      * @param data the value to insert
      */
     public void add(T data) {
@@ -105,21 +104,16 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
 
         if (pos == null) {
             NodeSL<T> newNode = new NodeSL<>(data, null);
-            pos.getHead() = newNode;
+            newNode = pos.getData();
         } else {
             while (pos.getNext() != null) {
                 pos = pos.getNext();
             }
-            NodeSL<T> newNode = new NodeSL<>(data, pos.getNext());
-            // links next node of pos to be newNode
+            NodeSL<T> newNode = new NodeSL<>(data, null);
+            // links pos to newNode
             pos.setNext(newNode);
 
         }
-
-        // // sets pos to newNode
-        // pos = newNode;
-        // // sets onLeft to true now that on left side of newNode
-        // onLeft = true;
     }
 
     /**
