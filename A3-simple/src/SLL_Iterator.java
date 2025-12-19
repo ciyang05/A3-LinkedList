@@ -98,22 +98,22 @@ public class SLL_Iterator<T> implements Phase5SLL_Iterator<T> {
      */
     public void add(T data) {
         // exits function if iterator is on left of node
-        if (onLeft) {
-            return;
-        }
+        // if (onLeft) {
+        //     return;
+        // }
 
-        if (pos == null) {
-            NodeSL<T> newNode = new NodeSL<>(data, null);
-            newNode = pos.getData();
-        } else {
-            while (pos.getNext() != null) {
-                pos = pos.getNext();
-            }
-            NodeSL<T> newNode = new NodeSL<>(data, null);
-            // links pos to newNode
-            pos.setNext(newNode);
+        // if (pos == null) {
+        //     NodeSL<T> newNode = new NodeSL<>(data, null);
+        //     newNode = pos.getData();
+        // } else {
+        //     while (pos.getNext() != null) {
+        //         pos = pos.getNext();
+        //     }
+        //     NodeSL<T> newNode = new NodeSL<>(data, null);
+        //     // links pos to newNode
+        //     pos.setNext(newNode);
 
-        }
+        // }
     }
 
     /**
